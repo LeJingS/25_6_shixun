@@ -1,0 +1,2981 @@
+{
+    "name": "supermarket_db",
+    "comment": "大型超市管理系统数据库",
+    "tables": [
+        {
+            "name": "users",
+            "comment": "用户信息表",
+            "columns": [
+                {
+                    "name": "user_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "用户ID"
+                },
+                {
+                    "name": "username",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "用户名"
+                },
+                {
+                    "name": "password",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "密码"
+                },
+                {
+                    "name": "role_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "角色ID"
+                },
+                {
+                    "name": "created_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "创建时间"
+                }
+            ]
+        },
+        {
+            "name": "roles",
+            "comment": "角色表",
+            "columns": [
+                {
+                    "name": "role_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "角色ID"
+                },
+                {
+                    "name": "role_name",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "角色名称"
+                },
+                {
+                    "name": "description",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "描述"
+                }
+            ]
+        },
+        {
+            "name": "user_role_mapping",
+            "comment": "用户-角色关联表",
+            "columns": [
+                {
+                    "name": "mapping_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "映射ID"
+                },
+                {
+                    "name": "user_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "用户ID"
+                },
+                {
+                    "name": "role_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "角色ID"
+                }
+            ]
+        },
+        {
+            "name": "permissions",
+            "comment": "权限表",
+            "columns": [
+                {
+                    "name": "permission_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "权限ID"
+                },
+                {
+                    "name": "permission_name",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "权限名称"
+                },
+                {
+                    "name": "description",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "描述"
+                }
+            ]
+        },
+        {
+            "name": "role_permission_mapping",
+            "comment": "角色-权限映射表",
+            "columns": [
+                {
+                    "name": "mapping_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "映射ID"
+                },
+                {
+                    "name": "role_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "角色ID"
+                },
+                {
+                    "name": "permission_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "权限ID"
+                }
+            ]
+        },
+        {
+            "name": "departments",
+            "comment": "部门表",
+            "columns": [
+                {
+                    "name": "department_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "部门ID"
+                },
+                {
+                    "name": "department_name",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "部门名称"
+                },
+                {
+                    "name": "manager_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "负责人ID"
+                }
+            ]
+        },
+        {
+            "name": "logs",
+            "comment": "系统日志表",
+            "columns": [
+                {
+                    "name": "log_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "日志ID"
+                },
+                {
+                    "name": "user_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "用户ID"
+                },
+                {
+                    "name": "action",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "操作行为"
+                },
+                {
+                    "name": "timestamp",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "操作时间"
+                }
+            ]
+        },
+        {
+            "name": "products",
+            "comment": "商品信息表",
+            "columns": [
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "name",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品名称"
+                },
+                {
+                    "name": "category_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "分类ID"
+                },
+                {
+                    "name": "brand_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "品牌ID"
+                },
+                {
+                    "name": "price",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "价格"
+                },
+                {
+                    "name": "cost_price",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "成本价"
+                },
+                {
+                    "name": "unit",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "单位"
+                },
+                {
+                    "name": "barcode",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "条形码"
+                },
+                {
+                    "name": "status",
+                    "type": "TINYINT",
+                    "length": 1,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "状态（上架/下架）"
+                }
+            ]
+        },
+        {
+            "name": "categories",
+            "comment": "商品分类表",
+            "columns": [
+                {
+                    "name": "category_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "分类ID"
+                },
+                {
+                    "name": "category_name",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "分类名称"
+                },
+                {
+                    "name": "parent_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "父级分类ID"
+                }
+            ]
+        },
+        {
+            "name": "brands",
+            "comment": "品牌表",
+            "columns": [
+                {
+                    "name": "brand_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "品牌ID"
+                },
+                {
+                    "name": "brand_name",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "品牌名称"
+                },
+                {
+                    "name": "description",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "品牌描述"
+                }
+            ]
+        },
+        {
+            "name": "sales_records",
+            "comment": "销售记录表",
+            "columns": [
+                {
+                    "name": "sale_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "销售ID"
+                },
+                {
+                    "name": "cashier_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "收银员ID"
+                },
+                {
+                    "name": "total_amount",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "总金额"
+                },
+                {
+                    "name": "payment_method",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "支付方式"
+                },
+                {
+                    "name": "sale_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "销售时间"
+                }
+            ]
+        },
+        {
+            "name": "sales_details",
+            "comment": "销售明细表",
+            "columns": [
+                {
+                    "name": "detail_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "明细ID"
+                },
+                {
+                    "name": "sale_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "销售ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "quantity",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "数量"
+                },
+                {
+                    "name": "price",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "单价"
+                },
+                {
+                    "name": "subtotal",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "小计"
+                }
+            ]
+        },
+        {
+            "name": "payment_methods",
+            "comment": "支付方式表",
+            "columns": [
+                {
+                    "name": "method_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "支付方式ID"
+                },
+                {
+                    "name": "method_name",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "支付方式名称"
+                }
+            ]
+        },
+        {
+            "name": "discounts",
+            "comment": "折扣规则表",
+            "columns": [
+                {
+                    "name": "discount_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "折扣ID"
+                },
+                {
+                    "name": "rule_type",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "规则类型（满减/折扣率/限时活动）"
+                },
+                {
+                    "name": "value",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "值"
+                },
+                {
+                    "name": "start_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "开始时间"
+                },
+                {
+                    "name": "end_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "结束时间"
+                }
+            ]
+        },
+        {
+            "name": "coupons",
+            "comment": "优惠券表",
+            "columns": [
+                {
+                    "name": "coupon_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "优惠券ID"
+                },
+                {
+                    "name": "code",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "优惠券编码"
+                },
+                {
+                    "name": "discount_value",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "面值"
+                },
+                {
+                    "name": "valid_from",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "有效期起"
+                },
+                {
+                    "name": "valid_to",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "有效期止"
+                }
+            ]
+        },
+        {
+            "name": "coupon_usage",
+            "comment": "优惠券使用记录表",
+            "columns": [
+                {
+                    "name": "usage_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "使用记录ID"
+                },
+                {
+                    "name": "coupon_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "优惠券ID"
+                },
+                {
+                    "name": "user_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "用户ID"
+                },
+                {
+                    "name": "used_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "使用时间"
+                }
+            ]
+        },
+        {
+            "name": "returns",
+            "comment": "退货记录表",
+            "columns": [
+                {
+                    "name": "return_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "退货ID"
+                },
+                {
+                    "name": "sale_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "销售ID"
+                },
+                {
+                    "name": "reason",
+                    "type": "TEXT",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "退货原因"
+                },
+                {
+                    "name": "return_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "退货时间"
+                }
+            ]
+        },
+        {
+            "name": "return_details",
+            "comment": "退货明细表",
+            "columns": [
+                {
+                    "name": "detail_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "明细ID"
+                },
+                {
+                    "name": "return_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "退货ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "quantity",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "数量"
+                },
+                {
+                    "name": "amount",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "金额"
+                }
+            ]
+        },
+        {
+            "name": "suppliers",
+            "comment": "供应商信息表",
+            "columns": [
+                {
+                    "name": "supplier_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "供应商ID"
+                },
+                {
+                    "name": "name",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "供应商名称"
+                },
+                {
+                    "name": "contact_person",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "联系人"
+                },
+                {
+                    "name": "phone",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "联系电话"
+                },
+                {
+                    "name": "address",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "地址"
+                },
+                {
+                    "name": "status",
+                    "type": "TINYINT",
+                    "length": 1,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "状态（启用/停用）"
+                }
+            ]
+        },
+        {
+            "name": "supplier_products",
+            "comment": "供应商供应商品表",
+            "columns": [
+                {
+                    "name": "sp_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "关系ID"
+                },
+                {
+                    "name": "supplier_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "供应商ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "supply_price",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "供货价"
+                },
+                {
+                    "name": "lead_time",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "交货周期（天）"
+                }
+            ]
+        },
+        {
+            "name": "purchase_orders",
+            "comment": "采购订单表",
+            "columns": [
+                {
+                    "name": "order_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "订单ID"
+                },
+                {
+                    "name": "supplier_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "供应商ID"
+                },
+                {
+                    "name": "total_amount",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "总金额"
+                },
+                {
+                    "name": "status",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "状态（待审核/已发货/已完成）"
+                },
+                {
+                    "name": "order_date",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "下单时间"
+                }
+            ]
+        },
+        {
+            "name": "purchase_order_details",
+            "comment": "采购订单明细表",
+            "columns": [
+                {
+                    "name": "detail_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "明细ID"
+                },
+                {
+                    "name": "order_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "订单ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "quantity",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "数量"
+                },
+                {
+                    "name": "price",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "单价"
+                },
+                {
+                    "name": "subtotal",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "小计"
+                }
+            ]
+        },
+        {
+            "name": "purchase_receipts",
+            "comment": "采购收货单",
+            "columns": [
+                {
+                    "name": "receipt_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "收货单ID"
+                },
+                {
+                    "name": "order_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "订单ID"
+                },
+                {
+                    "name": "warehouse_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "仓库ID"
+                },
+                {
+                    "name": "received_by",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "接收人ID"
+                },
+                {
+                    "name": "receive_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "接收时间"
+                }
+            ]
+        },
+        {
+            "name": "purchase_receipt_details",
+            "comment": "采购收货明细表",
+            "columns": [
+                {
+                    "name": "detail_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "明细ID"
+                },
+                {
+                    "name": "receipt_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "收货单ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "quantity",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "数量"
+                },
+                {
+                    "name": "batch_number",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "批次号"
+                },
+                {
+                    "name": "expire_date",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "过期日期"
+                }
+            ]
+        },
+        {
+            "name": "inventories",
+            "comment": "库存表",
+            "columns": [
+                {
+                    "name": "inventory_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "库存ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "warehouse_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "仓库ID"
+                },
+                {
+                    "name": "quantity",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "库存数量"
+                },
+                {
+                    "name": "batch_number",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "批次号"
+                },
+                {
+                    "name": "location",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "存放位置"
+                }
+            ]
+        },
+        {
+            "name": "stock_logs",
+            "comment": "库存变动日志表",
+            "columns": [
+                {
+                    "name": "log_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "日志ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "change_quantity",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "变动数量"
+                },
+                {
+                    "name": "reason",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "变动原因"
+                },
+                {
+                    "name": "timestamp",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "时间戳"
+                }
+            ]
+        },
+        {
+            "name": "low_stock_alerts",
+            "comment": "库存预警表",
+            "columns": [
+                {
+                    "name": "alert_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "预警ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "threshold",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "阈值"
+                },
+                {
+                    "name": "triggered_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "触发时间"
+                }
+            ]
+        },
+        {
+            "name": "warehouses",
+            "comment": "仓库表",
+            "columns": [
+                {
+                    "name": "warehouse_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "仓库ID"
+                },
+                {
+                    "name": "name",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "仓库名称"
+                },
+                {
+                    "name": "location",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "地址"
+                },
+                {
+                    "name": "capacity",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "容量（立方米）"
+                },
+                {
+                    "name": "manager_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "负责人ID"
+                }
+            ]
+        },
+        {
+            "name": "warehouse_locations",
+            "comment": "仓库位置表",
+            "columns": [
+                {
+                    "name": "location_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "位置ID"
+                },
+                {
+                    "name": "warehouse_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "仓库ID"
+                },
+                {
+                    "name": "shelf_number",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "货架编号"
+                },
+                {
+                    "name": "row_number",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "行号"
+                },
+                {
+                    "name": "column_number",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "列号"
+                }
+            ]
+        },
+        {
+            "name": "employees",
+            "comment": "员工信息表",
+            "columns": [
+                {
+                    "name": "employee_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "员工ID"
+                },
+                {
+                    "name": "name",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "姓名"
+                },
+                {
+                    "name": "gender",
+                    "type": "VARCHAR",
+                    "length": 10,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "性别"
+                },
+                {
+                    "name": "position",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "职位"
+                },
+                {
+                    "name": "department_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "所属部门ID"
+                },
+                {
+                    "name": "phone",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "电话"
+                },
+                {
+                    "name": "hire_date",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "入职日期"
+                },
+                {
+                    "name": "status",
+                    "type": "TINYINT",
+                    "length": 1,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "状态（在职/离职）"
+                }
+            ]
+        },
+        {
+            "name": "employee_attendance",
+            "comment": "员工考勤记录表",
+            "columns": [
+                {
+                    "name": "attendance_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "考勤ID"
+                },
+                {
+                    "name": "employee_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "员工ID"
+                },
+                {
+                    "name": "date",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "考勤日期"
+                },
+                {
+                    "name": "check_in",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "签到时间"
+                },
+                {
+                    "name": "check_out",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "签退时间"
+                },
+                {
+                    "name": "status",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "状态（正常/迟到/早退/缺勤）"
+                }
+            ]
+        },
+        {
+            "name": "salaries",
+            "comment": "工资表",
+            "columns": [
+                {
+                    "name": "salary_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "工资ID"
+                },
+                {
+                    "name": "employee_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "员工ID"
+                },
+                {
+                    "name": "base_salary",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "基本工资"
+                },
+                {
+                    "name": "bonus",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "奖金"
+                },
+                {
+                    "name": "deductions",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "扣款"
+                },
+                {
+                    "name": "net_salary",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "实发工资"
+                },
+                {
+                    "name": "month",
+                    "type": "VARCHAR",
+                    "length": 7,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "月份（格式YYYY-MM）"
+                }
+            ]
+        },
+        {
+            "name": "shifts",
+            "comment": "排班表",
+            "columns": [
+                {
+                    "name": "shift_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "排班ID"
+                },
+                {
+                    "name": "employee_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "员工ID"
+                },
+                {
+                    "name": "day_of_week",
+                    "type": "VARCHAR",
+                    "length": 10,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "星期几"
+                },
+                {
+                    "name": "start_time",
+                    "type": "TIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "上班时间"
+                },
+                {
+                    "name": "end_time",
+                    "type": "TIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "下班时间"
+                }
+            ]
+        },
+        {
+            "name": "performance_reviews",
+            "comment": "绩效考核表",
+            "columns": [
+                {
+                    "name": "review_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "考核ID"
+                },
+                {
+                    "name": "employee_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "员工ID"
+                },
+                {
+                    "name": "score",
+                    "type": "DECIMAL",
+                    "length": 5,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "评分"
+                },
+                {
+                    "name": "reviewer_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "评审人ID"
+                },
+                {
+                    "name": "review_date",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "评审时间"
+                }
+            ]
+        },
+        {
+            "name": "notifications",
+            "comment": "内部通知公告表",
+            "columns": [
+                {
+                    "name": "notification_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "通知ID"
+                },
+                {
+                    "name": "title",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "标题"
+                },
+                {
+                    "name": "content",
+                    "type": "TEXT",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "内容"
+                },
+                {
+                    "name": "sender_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "发送人ID"
+                },
+                {
+                    "name": "send_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "发送时间"
+                }
+            ]
+        },
+        {
+            "name": "tasks",
+            "comment": "任务分配表",
+            "columns": [
+                {
+                    "name": "task_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "任务ID"
+                },
+                {
+                    "name": "title",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "任务标题"
+                },
+                {
+                    "name": "description",
+                    "type": "TEXT",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "任务描述"
+                },
+                {
+                    "name": "assigner_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "下发人ID"
+                },
+                {
+                    "name": "deadline",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "截止时间"
+                }
+            ]
+        },
+        {
+            "name": "task_assignments",
+            "comment": "任务分配明细表",
+            "columns": [
+                {
+                    "name": "assignment_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "分配ID"
+                },
+                {
+                    "name": "task_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "任务ID"
+                },
+                {
+                    "name": "employee_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "员工ID"
+                },
+                {
+                    "name": "status",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "状态（进行中/已完成）"
+                },
+                {
+                    "name": "assigned_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "分配时间"
+                }
+            ]
+        },
+        {
+            "name": "feedbacks",
+            "comment": "员工反馈建议表",
+            "columns": [
+                {
+                    "name": "feedback_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "反馈ID"
+                },
+                {
+                    "name": "employee_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "员工ID"
+                },
+                {
+                    "name": "content",
+                    "type": "TEXT",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "反馈内容"
+                },
+                {
+                    "name": "submitted_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "提交时间"
+                }
+            ]
+        },
+        {
+            "name": "reports",
+            "comment": "各类报表汇总表",
+            "columns": [
+                {
+                    "name": "report_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "报表ID"
+                },
+                {
+                    "name": "title",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "报表标题"
+                },
+                {
+                    "name": "type",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "报表类型（销售/库存/人事）"
+                },
+                {
+                    "name": "generated_by",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "生成人ID"
+                },
+                {
+                    "name": "generated_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "生成时间"
+                },
+                {
+                    "name": "data",
+                    "type": "TEXT",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "报表内容（JSON）"
+                }
+            ]
+        },
+        {
+            "name": "assets",
+            "comment": "固定资产表",
+            "columns": [
+                {
+                    "name": "asset_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "资产ID"
+                },
+                {
+                    "name": "name",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "资产名称"
+                },
+                {
+                    "name": "type_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "资产类型ID"
+                },
+                {
+                    "name": "purchase_date",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "购买日期"
+                },
+                {
+                    "name": "value",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "价值"
+                },
+                {
+                    "name": "location_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "存放位置ID"
+                },
+                {
+                    "name": "status",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "状态（在用/维修/报废）"
+                }
+            ]
+        },
+        {
+            "name": "asset_types",
+            "comment": "资产类型表",
+            "columns": [
+                {
+                    "name": "type_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "类型ID"
+                },
+                {
+                    "name": "type_name",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "类型名称"
+                }
+            ]
+        },
+        {
+            "name": "asset_locations",
+            "comment": "资产存放位置表",
+            "columns": [
+                {
+                    "name": "location_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "位置ID"
+                },
+                {
+                    "name": "area",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "区域"
+                },
+                {
+                    "name": "shelf",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "货架"
+                },
+                {
+                    "name": "notes",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "备注"
+                }
+            ]
+        },
+        {
+            "name": "maintenance_requests",
+            "comment": "设备维修申请表",
+            "columns": [
+                {
+                    "name": "request_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "请求ID"
+                },
+                {
+                    "name": "asset_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "资产ID"
+                },
+                {
+                    "name": "requested_by",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "申请人ID"
+                },
+                {
+                    "name": "description",
+                    "type": "TEXT",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "问题描述"
+                },
+                {
+                    "name": "status",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "状态（处理中/已完成）"
+                },
+                {
+                    "name": "submitted_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "提交时间"
+                }
+            ]
+        },
+        {
+            "name": "maintenance_records",
+            "comment": "维修记录表",
+            "columns": [
+                {
+                    "name": "record_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "记录ID"
+                },
+                {
+                    "name": "request_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "请求ID"
+                },
+                {
+                    "name": "technician_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "维修人员ID"
+                },
+                {
+                    "name": "repair_cost",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "费用"
+                },
+                {
+                    "name": "completion_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "完成时间"
+                }
+            ]
+        },
+        {
+            "name": "vendors",
+            "comment": "后勤服务提供商表",
+            "columns": [
+                {
+                    "name": "vendor_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "服务商ID"
+                },
+                {
+                    "name": "name",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "服务商名称"
+                },
+                {
+                    "name": "contact_person",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "联系人"
+                },
+                {
+                    "name": "phone",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "联系电话"
+                },
+                {
+                    "name": "service_type",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "服务类型（清洁/保安/运输）"
+                }
+            ]
+        },
+        {
+            "name": "service_contracts",
+            "comment": "服务合同表",
+            "columns": [
+                {
+                    "name": "contract_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "合同ID"
+                },
+                {
+                    "name": "vendor_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "服务商ID"
+                },
+                {
+                    "name": "start_date",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "起始日期"
+                },
+                {
+                    "name": "end_date",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "终止日期"
+                },
+                {
+                    "name": "amount",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "合同金额"
+                }
+            ]
+        },
+        {
+            "name": "cleaning_schedules",
+            "comment": "清洁排班表",
+            "columns": [
+                {
+                    "name": "schedule_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "排班ID"
+                },
+                {
+                    "name": "area",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "清洁区域"
+                },
+                {
+                    "name": "time",
+                    "type": "TIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "清洁时间"
+                },
+                {
+                    "name": "frequency",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "频率（每日/每周）"
+                },
+                {
+                    "name": "responsible_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "责任人ID"
+                }
+            ]
+        },
+        {
+            "name": "security_logs",
+            "comment": "安保日志表",
+            "columns": [
+                {
+                    "name": "log_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "日志ID"
+                },
+                {
+                    "name": "event",
+                    "type": "TEXT",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "事件描述"
+                },
+                {
+                    "name": "occurred_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "发生时间"
+                },
+                {
+                    "name": "reported_by",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "报告人ID"
+                }
+            ]
+        },
+        {
+            "name": "waste_disposal_records",
+            "comment": "废弃商品处理记录表",
+            "columns": [
+                {
+                    "name": "disposal_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "处理ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "quantity",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "处理数量"
+                },
+                {
+                    "name": "reason",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "处理原因（如过期、损坏）"
+                },
+                {
+                    "name": "disposal_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "处理时间"
+                },
+                {
+                    "name": "operator_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "操作员ID"
+                },
+                {
+                    "name": "warehouse_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "仓库ID"
+                }
+            ]
+        },
+        {
+            "name": "daily_sales_summary",
+            "comment": "每日销售汇总表",
+            "columns": [
+                {
+                    "name": "summary_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "汇总ID"
+                },
+                {
+                    "name": "sale_date",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "销售日期"
+                },
+                {
+                    "name": "total_sales",
+                    "type": "DECIMAL",
+                    "length": 15,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "总销售额"
+                },
+                {
+                    "name": "total_orders",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "订单总数"
+                },
+                {
+                    "name": "total_customers",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "参与客户数"
+                }
+            ]
+        },
+        {
+            "name": "monthly_sales_summary",
+            "comment": "每月销售汇总表",
+            "columns": [
+                {
+                    "name": "summary_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "汇总ID"
+                },
+                {
+                    "name": "year",
+                    "type": "INT",
+                    "length": 4,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "年份"
+                },
+                {
+                    "name": "month",
+                    "type": "INT",
+                    "length": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "月份"
+                },
+                {
+                    "name": "total_sales",
+                    "type": "DECIMAL",
+                    "length": 15,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "总销售额"
+                },
+                {
+                    "name": "total_orders",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "订单总数"
+                }
+            ]
+        },
+        {
+            "name": "product_sales_ranking",
+            "comment": "商品销量排行榜",
+            "columns": [
+                {
+                    "name": "ranking_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "排名ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "total_quantity",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "总销量"
+                },
+                {
+                    "name": "total_amount",
+                    "type": "DECIMAL",
+                    "length": 15,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "总销售额"
+                },
+                {
+                    "name": "rank_date",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "统计日期"
+                }
+            ]
+        },
+        {
+            "name": "customer_behavior_analysis",
+            "comment": "顾客行为分析表",
+            "columns": [
+                {
+                    "name": "analysis_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "分析ID"
+                },
+                {
+                    "name": "customer_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "客户ID"
+                },
+                {
+                    "name": "total_purchases",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "购买次数"
+                },
+                {
+                    "name": "avg_spending",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "平均消费金额"
+                },
+                {
+                    "name": "favorite_category",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "偏好分类"
+                },
+                {
+                    "name": "last_purchase_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "最近一次购买时间"
+                }
+            ]
+        },
+        {
+            "name": "inventory_turnover_rate",
+            "comment": "库存周转率分析表",
+            "columns": [
+                {
+                    "name": "analysis_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "分析ID"
+                },
+                {
+                    "name": "product_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "商品ID"
+                },
+                {
+                    "name": "turnover_rate",
+                    "type": "DECIMAL",
+                    "length": 10,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "周转率"
+                },
+                {
+                    "name": "start_date",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "开始日期"
+                },
+                {
+                    "name": "end_date",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "结束日期"
+                }
+            ]
+        },
+        {
+            "name": "profit_loss_statement",
+            "comment": "利润损益表",
+            "columns": [
+                {
+                    "name": "statement_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "报表ID"
+                },
+                {
+                    "name": "period_start",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "周期起始"
+                },
+                {
+                    "name": "period_end",
+                    "type": "DATE",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "周期结束"
+                },
+                {
+                    "name": "revenue",
+                    "type": "DECIMAL",
+                    "length": 15,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "总收入"
+                },
+                {
+                    "name": "cost_of_goods_sold",
+                    "type": "DECIMAL",
+                    "length": 15,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "销售成本"
+                },
+                {
+                    "name": "gross_profit",
+                    "type": "DECIMAL",
+                    "length": 15,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "毛利润"
+                },
+                {
+                    "name": "operating_expenses",
+                    "type": "DECIMAL",
+                    "length": 15,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "运营费用"
+                },
+                {
+                    "name": "net_profit",
+                    "type": "DECIMAL",
+                    "length": 15,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "净利润"
+                }
+            ]
+        },
+        {
+            "name": "dashboards",
+            "comment": "可视化仪表盘配置表",
+            "columns": [
+                {
+                    "name": "dashboard_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "仪表盘ID"
+                },
+                {
+                    "name": "user_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "用户ID"
+                },
+                {
+                    "name": "title",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "标题"
+                },
+                {
+                    "name": "layout_config",
+                    "type": "TEXT",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "布局JSON配置"
+                },
+                {
+                    "name": "created_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "创建时间"
+                },
+                {
+                    "name": "updated_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "最后更新时间"
+                }
+            ]
+        },
+        {
+            "name": "customers",
+            "comment": "会员客户表",
+            "columns": [
+                {
+                    "name": "customer_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "客户ID"
+                },
+                {
+                    "name": "name",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "姓名"
+                },
+                {
+                    "name": "phone",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "联系电话"
+                },
+                {
+                    "name": "email",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "邮箱"
+                },
+                {
+                    "name": "member_since",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "注册时间"
+                }
+            ]
+        },
+        {
+            "name": "member_cards",
+            "comment": "会员卡信息表",
+            "columns": [
+                {
+                    "name": "card_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "卡号ID"
+                },
+                {
+                    "name": "customer_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "客户ID"
+                },
+                {
+                    "name": "card_number",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "卡号"
+                },
+                {
+                    "name": "points",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "积分"
+                },
+                {
+                    "name": "status",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "状态（有效/冻结/注销）"
+                }
+            ]
+        },
+        {
+            "name": "loyalty_points",
+            "comment": "积分记录表",
+            "columns": [
+                {
+                    "name": "point_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "积分ID"
+                },
+                {
+                    "name": "customer_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "客户ID"
+                },
+                {
+                    "name": "amount",
+                    "type": "INT",
+                    "length": 11,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "积分变动值"
+                },
+                {
+                    "name": "reason",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "变动原因"
+                },
+                {
+                    "name": "change_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "变动时间"
+                }
+            ]
+        },
+        {
+            "name": "orders_online",
+            "comment": "线上订单表",
+            "columns": [
+                {
+                    "name": "order_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "订单ID"
+                },
+                {
+                    "name": "customer_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "客户ID"
+                },
+                {
+                    "name": "total_amount",
+                    "type": "DECIMAL",
+                    "length": 15,
+                    "decimalDigits": 2,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "总金额"
+                },
+                {
+                    "name": "payment_status",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "支付状态"
+                },
+                {
+                    "name": "order_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "下单时间"
+                }
+            ]
+        },
+        {
+            "name": "delivery_addresses",
+            "comment": "配送地址表",
+            "columns": [
+                {
+                    "name": "address_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "地址ID"
+                },
+                {
+                    "name": "customer_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "客户ID"
+                },
+                {
+                    "name": "full_name",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "收件人"
+                },
+                {
+                    "name": "phone",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "电话"
+                },
+                {
+                    "name": "address",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "详细地址"
+                }
+            ]
+        },
+        {
+            "name": "delivery_records",
+            "comment": "配送记录表",
+            "columns": [
+                {
+                    "name": "record_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "记录ID"
+                },
+                {
+                    "name": "order_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "订单ID"
+                },
+                {
+                    "name": "courier",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "快递公司"
+                },
+                {
+                    "name": "tracking_number",
+                    "type": "VARCHAR",
+                    "length": 50,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "运单号"
+                },
+                {
+                    "name": "status",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "配送状态"
+                },
+                {
+                    "name": "delivered_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "送达时间"
+                }
+            ]
+        },
+        {
+            "name": "sms_notifications",
+            "comment": "短信通知记录表",
+            "columns": [
+                {
+                    "name": "sms_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "短信ID"
+                },
+                {
+                    "name": "phone",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "接收手机号"
+                },
+                {
+                    "name": "content",
+                    "type": "TEXT",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "短信内容"
+                },
+                {
+                    "name": "send_time",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "发送时间"
+                },
+                {
+                    "name": "status",
+                    "type": "VARCHAR",
+                    "length": 20,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "发送状态"
+                }
+            ]
+        },
+        {
+            "name": "email_templates",
+            "comment": "邮件模板表",
+            "columns": [
+                {
+                    "name": "template_id",
+                    "type": "BIGINT",
+                    "length": 20,
+                    "isPrimaryKey": true,
+                    "autoIncrement": true,
+                    "comment": "模板ID"
+                },
+                {
+                    "name": "name",
+                    "type": "VARCHAR",
+                    "length": 100,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "模板名称"
+                },
+                {
+                    "name": "subject",
+                    "type": "VARCHAR",
+                    "length": 255,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "邮件主题"
+                },
+                {
+                    "name": "body",
+                    "type": "TEXT",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "邮件正文"
+                },
+                {
+                    "name": "created_at",
+                    "type": "DATETIME",
+                    "length": 0,
+                    "isPrimaryKey": false,
+                    "autoIncrement": false,
+                    "comment": "创建时间"
+                }
+            ]
+        }
+    ]
+}
