@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.lejings.shopserver.mapper.CommonMapper">
+
+
+    <!-- EmployeeLoginVO 映射定义 -->
+    <resultMap id="EmployeeLoginVOMap" type="top.lejings.shoppojo.VO.EmployeeLoginVO">
+        <id property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="fullName" column="full_name"/>
+        <result property="gender" column="gender"/>
+        <result property="position" column="position"/>
+        <result property="departmentName" column="department_name"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="roleName" column="role_name"/>
+        <!-- token 字段由Service层生成，此处不映射 -->
+    </resultMap>
+
+    <!-- 根据用户名查询员工登录信息 -->
+    <select id="getByUsername" resultMap="EmployeeLoginVOMap">
+        SELECT
+            u.user_id,
+            u.username,
+            u.password,
+            u.full_name,
+            e.gender,
+            e.position,
+            d.department_name,
+            e.hire_date,
+            r.role_name
+        FROM users u
+                 -- 关联员工表 (1:1关系)
+                 INNER JOIN employees e ON u.user_id = e.user_id
+            -- 关联部门表 (通过员工部门ID)
+                 INNER JOIN departments d ON e.department_id = d.department_id
+            -- 关联角色表 (通过映射表取第一个角色)
+                 LEFT JOIN (
+            SELECT
+                urm.user_id,
+                r.role_name,
+                ROW_NUMBER() OVER (PARTITION BY urm.user_id ORDER BY r.role_id) AS rn
+            FROM user_role_mapping urm
+                     INNER JOIN roles r ON urm.role_id = r.role_id
+        ) r ON u.user_id = r.user_id AND r.rn = 1
+        WHERE u.username = #{username}
+          AND u.status = 1  -- 只查询启用状态的账号
+    </select>
+
+</mapper>
