@@ -9,10 +9,15 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+shop:
+  jwt:
+    secretKey: lejings
+    ttl: 3600000
+    tokenName: token
+
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath*:mapper/**/*.xml
   type-aliases-package: top.lejings.shoppojo.VO
   configuration:
-    #??????
-    map-underscore-to-camel-case: true
+    mapUnderscoreToCamelCase: true

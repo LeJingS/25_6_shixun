@@ -40,4 +40,18 @@ public class EmployeeController {
         return Result.success(commonService.login(employeeLoginDTO));
     }
 
+    /**
+     * @Description: 登出
+     * @return
+     */
+    @PostMapping("/logout")
+    @ApiOperation(value = "登出")
+    public Result<String> logout(){
+        log.info("员工登出");
+        return Result.success("登出成功");
+    }
+
+    //内部应用，不允许注册
+
+    //TODO 员工修改允许个人修改的个人信息
 }

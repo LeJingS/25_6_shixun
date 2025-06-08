@@ -12,7 +12,7 @@ import java.util.Map;
  * @BelongsPackage: top.lejings.shopcommon.utils
  * @Author: LeJingS
  * @CreateTime: 2025-06-07  14:31
- * @Description: TODO
+ * @Description: jwt工具类
  */
 public class JwtUtil {
     /**

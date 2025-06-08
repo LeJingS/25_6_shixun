@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="top.lejings.shopserver.mapper.cashier.BuyMapper">
+    <resultMap id="productVOResultMap" type="top.lejings.shoppojo.VO.CommodityVO">
+        <id property="productId" column="product_id" />
+        <result property="brandId" column="brand_id" />
+        <result property="brandName" column="brand_name" />
+        <result property="categoryId" column="category_id" />
+        <result property="categoryName" column="category_name" />
+        <result property="name" column="product_name" />
+        <result property="price" column="price" />
+        <result property="unit" column="unit" />
+    </resultMap>
+    <select id="getCommodityByBarCode" resultType="top.lejings.shoppojo.VO.CommodityVO">
+        SELECT
+            p.product_id AS productId,
+            p.brand_id AS brandId,
+            b.brand_name AS brandName,
+            p.category_id AS categoryId,
+            c.category_name AS categoryName,
+            p.name AS productName,
+            p.price,
+            p.unit
+        FROM products p
+                 LEFT JOIN brands b ON p.brand_id = b.brand_id
+                 LEFT JOIN categories c ON p.category_id = c.category_id
+        WHERE p.barcode = #{barcode}
+    </select>
+
+
+
+</mapper>
